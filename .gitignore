@@ -1,0 +1,18 @@
+# common
+.idea
+.DS_Store
+install_nvm.sh
+node_modules
+references
+packages.cache.json
+npm-debug.log
+
+# jest output
+tests/__coverage__/
+coverage
+
+# secrets
+.env
+
+# webpack build output
+dist/
