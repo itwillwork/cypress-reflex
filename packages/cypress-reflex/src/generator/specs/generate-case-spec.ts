@@ -39,7 +39,7 @@ const getScenarioSummaryComment = (
 
 
 const getSpecDescribe = (options: OptionsT) => {
-  return `${options.isSmoke ? '[smoke] ': ''}${options.specPath}`;
+  return `${options.specPath}`;
 };
 
 
