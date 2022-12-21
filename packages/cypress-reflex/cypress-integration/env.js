@@ -1,9 +1,7 @@
 const getCypressReflexEnv = (config) => {
-	const shouldUpdateScreenshots = config.env.updateScreenshots;
-
 	return {
-		shouldUpdateScreenshots,
-		screenshotsFolder: shouldUpdateScreenshots ? './' : './screenshots'
+		shouldUpdateScreenshots: config.env.update,
+		shouldUpdateFixtures: config.env.update,
 	}
 }
 
