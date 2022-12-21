@@ -1,6 +1,6 @@
 
     /**
-      Describe: Добавление & редактирование & удаление TODO
+      Describe: Добавление & редактирование & удаление todo
     */
     describe('cypress/e2e/generated/CASE-1/regression-3', () => {
   
@@ -13,19 +13,11 @@
           throw error;
         });
     
-        before(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO before
-	
-            
-        });
-    
         beforeEach(function () {
           
-// Step [1/1]: raw - 
+			// Step [1/1]: raw - 
+			cy.log('**Step [1/1]:** raw - ');
+		
 
 				
 		  cy.task('api:create-task').as('testTask');
@@ -37,16 +29,15 @@
     /** 
 Test summary:
 visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}
-raw - 
 check:screenshot - 
 action:todo-input:type-text - {"value":"${this.testTask.userId}🤡"}
 action:todo-input:type-enter - 
 check:screenshot - 
-action:todo-list:item:open-editor - 
+action:todo-list:item:open-editor - {"itemIndex":0}
 check:screenshot - 
-action:todo-list:item:edit - {"value":"text"}
+action:todo-list:item:edit - {"itemIndex":0,"value":"text"}
 check:screenshot - 
-action:todo-list:item:delete - 
+action:todo-list:item:delete - {"itemIndex":0}
 check:screenshot - 
  */
   
@@ -54,104 +45,88 @@ check:screenshot -
           const specPath = __dirname;
 
           
-// Step [1/12]: visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}
+			// Step [1/11]: visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}
+			cy.log('**Step [1/11]:** visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}');
+		
 
                 cy.visit(`https://todomvc.com/examples/react/?id=${this.testTask.userId}`);
             
-// Step [2/12]: raw - 
-
-				
-				cy.wait(1000); // TODO remove
-			
-            
-// Step [3/12]: check:screenshot - 
-
-			            cy.get('.header').takeAndCompareScreenshot({
-			              specPath,
-			              name: '2_{.header}',
-			            });
-			          
-// Step [4/12]: action:todo-input:type-text - {"value":"${this.testTask.userId}🤡"}
-
-						cy.get('.new-todo').type(`${this.testTask.userId}🤡`).blur();
-					
-// Step [5/12]: action:todo-input:type-enter - 
-
-						cy.get('.new-todo').type('{enter}').blur();
-					
-// Step [6/12]: check:screenshot - 
-
-			            cy.get('.header').takeAndCompareScreenshot({
-			              specPath,
-			              name: '5_{.header}',
-			            });
-			          
-
-			            cy.get('.todo-list').takeAndCompareScreenshot({
-			              specPath,
-			              name: '5_{.todo-list}',
-			            });
-			          
-
-			            cy.get('.todo-count').takeAndCompareScreenshot({
-			              specPath,
-			              name: '5_{.todo-count}',
-			            });
-			          
-// Step [7/12]: action:todo-list:item:open-editor - 
-
-						cy.get('ul.todo-list li:first label').dblclick();
-					
-// Step [8/12]: check:screenshot - 
-
-			            cy.get('.todo-list').takeAndCompareScreenshot({
-			              specPath,
-			              name: '7_{.todo-list}',
-			            });
-			          
-// Step [9/12]: action:todo-list:item:edit - {"value":"text"}
-
-							cy.get('ul.todo-list li:first input.edit').type(`text`).blur();
-						
-// Step [10/12]: check:screenshot - 
-
-			            cy.get('.todo-list').takeAndCompareScreenshot({
-			              specPath,
-			              name: '9_{.todo-list}',
-			            });
-			          
-// Step [11/12]: action:todo-list:item:delete - 
-
-						cy.get('ul.todo-list li:first').realHover().get('button.destroy').click();
-					
-// Step [12/12]: check:screenshot - 
+			// Step [2/11]: check:screenshot - 
+			cy.log('**Step [2/11]:** check:screenshot - ');
+		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '11_{.todoapp}',
+			              name: '1_{.todoapp}',
+			            });
+			          
+			// Step [3/11]: action:todo-input:type-text - {"value":"${this.testTask.userId}🤡"}
+			cy.log('**Step [3/11]:** action:todo-input:type-text - {"value":"${this.testTask.userId}🤡"}');
+		
+
+						cy.get('.new-todo').type(`${this.testTask.userId}🤡`).blur();
+					
+			// Step [4/11]: action:todo-input:type-enter - 
+			cy.log('**Step [4/11]:** action:todo-input:type-enter - ');
+		
+
+						cy.get('.new-todo').type('{enter}').blur();
+					
+			// Step [5/11]: check:screenshot - 
+			cy.log('**Step [5/11]:** check:screenshot - ');
+		
+
+			            cy.get('.todoapp').takeAndCompareScreenshot({
+			              specPath,
+			              name: '4_{.todoapp}',
+			            });
+			          
+			// Step [6/11]: action:todo-list:item:open-editor - {"itemIndex":0}
+			cy.log('**Step [6/11]:** action:todo-list:item:open-editor - {"itemIndex":0}');
+		
+
+						cy.get(ul'.todo-list li').eq(0).get('label').dblclick();
+					
+			// Step [7/11]: check:screenshot - 
+			cy.log('**Step [7/11]:** check:screenshot - ');
+		
+
+			            cy.get('.todo-list').takeAndCompareScreenshot({
+			              specPath,
+			              name: '6_{.todo-list}',
+			            });
+			          
+			// Step [8/11]: action:todo-list:item:edit - {"itemIndex":0,"value":"text"}
+			cy.log('**Step [8/11]:** action:todo-list:item:edit - {"itemIndex":0,"value":"text"}');
+		
+
+							cy.get(ul'.todo-list li').eq(0).get('input.edit').type(`text`).blur();
+						
+			// Step [9/11]: check:screenshot - 
+			cy.log('**Step [9/11]:** check:screenshot - ');
+		
+
+			            cy.get('.todo-list').takeAndCompareScreenshot({
+			              specPath,
+			              name: '8_{.todo-list}',
+			            });
+			          
+			// Step [10/11]: action:todo-list:item:delete - {"itemIndex":0}
+			cy.log('**Step [10/11]:** action:todo-list:item:delete - {"itemIndex":0}');
+		
+
+							cy.get(ul'.todo-list li').eq(0).realHover().get('button.destroy').click();
+						
+			// Step [11/11]: check:screenshot - 
+			cy.log('**Step [11/11]:** check:screenshot - ');
+		
+
+			            cy.get('.todoapp').takeAndCompareScreenshot({
+			              specPath,
+			              name: '10_{.todoapp}',
 			            });
 			          
         });
   
-        after(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO after
-	
-            
-        });
-    
-        afterEach(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO afterEach
-	
-            
-        });
-    
     });
   

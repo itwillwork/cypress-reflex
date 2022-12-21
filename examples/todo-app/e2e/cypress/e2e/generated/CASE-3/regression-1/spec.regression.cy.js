@@ -1,8 +1,8 @@
 
     /**
-      Describe: Выбор одного из вариантов и clear completed
+      Describe: Select all & clear all selected
     */
-    describe('cypress/e2e/generated/CASE-2/regression-2', () => {
+    describe('cypress/e2e/generated/CASE-3/regression-1', () => {
   
         Cypress.on('fail', (error, runnable) => {
           if (/Expected to find element: .+, but never found it./.test(error.message)) {
@@ -50,9 +50,8 @@
         
     /** 
 Test summary:
-action:todo-list:item:select - {"itemIndex":0}
-check:screenshot - 
-action:todo-filters:select - {"options":[0,1,2],"selectedOption":2}
+action:todo-list:select-all - 
+action:todo-filters:select - {"options":[0,1,2],"selectedOption":1}
 check:screenshot - 
 action:todo-list:clear-all - 
 check:screenshot - 
@@ -62,49 +61,40 @@ check:screenshot -
           const specPath = __dirname;
 
           
-			// Step [1/6]: action:todo-list:item:select - {"itemIndex":0}
-			cy.log('**Step [1/6]:** action:todo-list:item:select - {"itemIndex":0}');
+			// Step [1/5]: action:todo-list:select-all - 
+			cy.log('**Step [1/5]:** action:todo-list:select-all - ');
 		
 
-							cy.get(ul'.todo-list li').eq(0).get('input.toggle').click();
-						
-			// Step [2/6]: check:screenshot - 
-			cy.log('**Step [2/6]:** check:screenshot - ');
-		
-
-			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
-			              name: '1_{.todoapp}',
-			            });
-			          
-			// Step [3/6]: action:todo-filters:select - {"options":[0,1,2],"selectedOption":2}
-			cy.log('**Step [3/6]:** action:todo-filters:select - {"options":[0,1,2],"selectedOption":2}');
-		
-
-						cy.get('ul.filters li').eq(2).click();
+						cy.get('.todoapp label[for="toggle-all"]').click();
 					
-			// Step [4/6]: check:screenshot - 
-			cy.log('**Step [4/6]:** check:screenshot - ');
+			// Step [2/5]: action:todo-filters:select - {"options":[0,1,2],"selectedOption":1}
+			cy.log('**Step [2/5]:** action:todo-filters:select - {"options":[0,1,2],"selectedOption":1}');
+		
+
+						cy.get('ul.filters li').eq(1).click();
+					
+			// Step [3/5]: check:screenshot - 
+			cy.log('**Step [3/5]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '3_{.todoapp}',
+			              name: '2_{.todoapp}',
 			            });
 			          
-			// Step [5/6]: action:todo-list:clear-all - 
-			cy.log('**Step [5/6]:** action:todo-list:clear-all - ');
+			// Step [4/5]: action:todo-list:clear-all - 
+			cy.log('**Step [4/5]:** action:todo-list:clear-all - ');
 		
 
 						cy.get('.todoapp .footer .clear-completed').click();
 					
-			// Step [6/6]: check:screenshot - 
-			cy.log('**Step [6/6]:** check:screenshot - ');
+			// Step [5/5]: check:screenshot - 
+			cy.log('**Step [5/5]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '5_{.todoapp}',
+			              name: '4_{.todoapp}',
 			            });
 			          
         });

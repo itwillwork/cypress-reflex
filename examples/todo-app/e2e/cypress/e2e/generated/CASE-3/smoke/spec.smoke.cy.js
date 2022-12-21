@@ -1,38 +1,48 @@
 
     /**
-      Describe: выбор одного из вариантов и clear cmpleted & all checked
+      Describe: Select all & clear all selected
     */
-    describe('[smoke] cypress/e2e/generated/CASE-3/smoke', () => {
+    describe('cypress/e2e/generated/CASE-3/smoke', () => {
   
-        before(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO before
-	
-            
-        });
-    
         beforeEach(function () {
           
-// Step [1/2]: visit - {"url":"https://todomvc.com/examples/react/"}
+			// Step [1/5]: visit - {"url":"https://todomvc.com/examples/react/"}
+			cy.log('**Step [1/5]:** visit - {"url":"https://todomvc.com/examples/react/"}');
+		
 
                 cy.visit(`https://todomvc.com/examples/react/`);
             
-// Step [2/2]: raw - 
+			// Step [2/5]: action:todo-input:type-text - {"value":"test 1"}
+			cy.log('**Step [2/5]:** action:todo-input:type-text - {"value":"test 1"}');
+		
 
-				
-					cy.get('.new-todo').type('test 1{enter}').blur();
-					cy.get('.new-todo').type('test 2{enter}').blur();
-				
-            
+						cy.get('.new-todo').type(`test 1`).blur();
+					
+			// Step [3/5]: action:todo-input:type-enter - 
+			cy.log('**Step [3/5]:** action:todo-input:type-enter - ');
+		
+
+						cy.get('.new-todo').type('{enter}').blur();
+					
+			// Step [4/5]: action:todo-input:type-text - {"value":"test 2"}
+			cy.log('**Step [4/5]:** action:todo-input:type-text - {"value":"test 2"}');
+		
+
+						cy.get('.new-todo').type(`test 2`).blur();
+					
+			// Step [5/5]: action:todo-input:type-enter - 
+			cy.log('**Step [5/5]:** action:todo-input:type-enter - ');
+		
+
+						cy.get('.new-todo').type('{enter}').blur();
+					
         });
     
         
     /** 
 Test summary:
 action:todo-list:select-all - 
+action:todo-filters:select - {"options":[0,1,2],"selectedOption":0}
 check:screenshot - 
 action:todo-list:clear-all - 
 check:screenshot - 
@@ -42,49 +52,43 @@ check:screenshot -
           const specPath = __dirname;
 
           
-// Step [1/4]: action:todo-list:select-all - 
+			// Step [1/5]: action:todo-list:select-all - 
+			cy.log('**Step [1/5]:** action:todo-list:select-all - ');
+		
 
 						cy.get('.todoapp label[for="toggle-all"]').click();
 					
-// Step [2/4]: check:screenshot - 
+			// Step [2/5]: action:todo-filters:select - {"options":[0,1,2],"selectedOption":0}
+			cy.log('**Step [2/5]:** action:todo-filters:select - {"options":[0,1,2],"selectedOption":0}');
+		
+
+						cy.get('ul.filters li').eq(0).click();
+					
+			// Step [3/5]: check:screenshot - 
+			cy.log('**Step [3/5]:** check:screenshot - ');
+		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '1_{.todoapp}',
+			              name: '2_{.todoapp}',
 			            });
 			          
-// Step [3/4]: action:todo-list:clear-all - 
+			// Step [4/5]: action:todo-list:clear-all - 
+			cy.log('**Step [4/5]:** action:todo-list:clear-all - ');
+		
 
 						cy.get('.todoapp .footer .clear-completed').click();
 					
-// Step [4/4]: check:screenshot - 
+			// Step [5/5]: check:screenshot - 
+			cy.log('**Step [5/5]:** check:screenshot - ');
+		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '3_{.todoapp}',
+			              name: '4_{.todoapp}',
 			            });
 			          
         });
   
-        after(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO after
-	
-            
-        });
-    
-        afterEach(function () {
-          
-// Step [1/1]: raw - 
-
-				
-		// TODO afterEach
-	
-            
-        });
-    
     });
   
