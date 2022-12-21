@@ -28,7 +28,6 @@
     /** 
 Test summary:
 visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}
-check:screenshot - 
 action:todo-input:type-text - {"value":" ${this.testTask.userId} "}
 action:todo-input:type-enter - 
 check:screenshot - 
@@ -44,74 +43,66 @@ check:screenshot -
           const specFile = __filename;
 
           
-			cy.log('**Step [1/11]:** visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}');
+			cy.log('**Step [1/10]:** visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}');
 		
 
                 cy.visit(`https://todomvc.com/examples/react/?id=${this.testTask.userId}`);
             
-			cy.log('**Step [2/11]:** check:screenshot - ');
-		
-
-			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specFile,
-			              name: '2_{.todoapp}',
-			            });
-			          
-			cy.log('**Step [3/11]:** action:todo-input:type-text - {"value":" ${this.testTask.userId} "}');
+			cy.log('**Step [2/10]:** action:todo-input:type-text - {"value":" ${this.testTask.userId} "}');
 		
 
 						cy.get('.new-todo').type(` ${this.testTask.userId} `).blur();
 					
-			cy.log('**Step [4/11]:** action:todo-input:type-enter - ');
+			cy.log('**Step [3/10]:** action:todo-input:type-enter - ');
 		
 
 						cy.get('.new-todo').type('{enter}').blur();
 					
-			cy.log('**Step [5/11]:** check:screenshot - ');
+			cy.log('**Step [4/10]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specFile,
-			              name: '5_{.todoapp}',
+			              name: '4_{.todoapp}',
 			            });
 			          
-			cy.log('**Step [6/11]:** action:todo-list:item:open-editor - {"itemIndex":0}');
+			cy.log('**Step [5/10]:** action:todo-list:item:open-editor - {"itemIndex":0}');
 		
 
-						cy.get('ul.todo-list li').eq(0).get('label').dblclick();
+						cy.get('ul.todo-list li').eq(0).find('label').dblclick();
 					
-			cy.log('**Step [7/11]:** check:screenshot - ');
+			cy.log('**Step [6/10]:** check:screenshot - ');
 		
 
 			            cy.get('.todo-list').takeAndCompareScreenshot({
 			              specFile,
-			              name: '7_{.todo-list}',
+			              name: '6_{.todo-list}',
 			            });
 			          
-			cy.log('**Step [8/11]:** action:todo-list:item:edit - {"itemIndex":0,"value":"text"}');
+			cy.log('**Step [7/10]:** action:todo-list:item:edit - {"itemIndex":0,"value":"text"}');
 		
 
-							cy.get('ul.todo-list li').eq(0).get('input.edit').type(`text`).blur();
+							cy.get('ul.todo-list li').eq(0).find('input.edit').type(`text`).blur();
 						
-			cy.log('**Step [9/11]:** check:screenshot - ');
+			cy.log('**Step [8/10]:** check:screenshot - ');
 		
 
 			            cy.get('.todo-list').takeAndCompareScreenshot({
 			              specFile,
-			              name: '9_{.todo-list}',
+			              name: '8_{.todo-list}',
 			            });
 			          
-			cy.log('**Step [10/11]:** action:todo-list:item:delete - {"itemIndex":0}');
+			cy.log('**Step [9/10]:** action:todo-list:item:delete - {"itemIndex":0}');
 		
 
-							cy.get('ul.todo-list li').eq(0).realHover().get('button.destroy').click();
+							cy.get('ul.todo-list li').eq(0).realHover().find('button.destroy').click();
 						
-			cy.log('**Step [11/11]:** check:screenshot - ');
+			cy.log('**Step [10/10]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specFile,
-			              name: '11_{.todoapp}',
+			              name: '10_{.todoapp}',
 			            });
 			          
         });

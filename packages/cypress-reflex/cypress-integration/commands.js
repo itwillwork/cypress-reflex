@@ -21,7 +21,7 @@ Cypress.Commands.add(
     const pathToScreenshotDiff = path.resolve(screenshotsFolder, `${specFile}/${fullName}.diff.png`);
     const pathToScreenshotCurrent = path.resolve(screenshotsFolder, `${specFile}/${fullName}.current.png`);
 
-    const pathToScreenshotExpected = `${specPath}/screenshots/${fullName}.png`;
+    const pathToScreenshotExpected = `${specPath}/fixtures/${fullName}.png`;
 
     const shouldUpdateScreenshots = Cypress.config('shouldUpdateScreenshots');
     if (shouldUpdateScreenshots) {

@@ -62,7 +62,7 @@ const saveSnapshot = (args) => {
   return null;
 }
 
-const WRONG_SCREENSHOT_PATH_REGEXP = /\/cypress\/screenshots\/[^/]+.cy.js\//;
+const WRONG_SCREENSHOT_PATH_REGEXP = /cypress\/screenshots\/.+\/cypress/;
 
 const registrateCypressReflexTasks = (on, config) => {
   on("task", {
@@ -76,14 +76,8 @@ const registrateCypressReflexTasks = (on, config) => {
 
   // fix cypress, cli wrong screenshot path
   on('after:screenshot', (details) => {
-    
-    // // kekw
-    // if (!details.testFailure) {
-    //   throw new Error("kekw: " + JSON.stringify(details));
-    // }
-
     if (!details.testFailure && WRONG_SCREENSHOT_PATH_REGEXP.test(details.path)) {
-      const replacementPath = details.path.replace(WRONG_SCREENSHOT_PATH_REGEXP, '/cypress/screenshots/')
+      const replacementPath = details.path.replace(WRONG_SCREENSHOT_PATH_REGEXP, 'cypress/screenshots/cypress')
 
       fs.mkdirSync(path.dirname(replacementPath), {
         recursive: true
@@ -104,6 +98,7 @@ const registrateCypressReflexTasks = (on, config) => {
 
   // fix cypress, different image ratio 
   // https://github.com/cypress-io/cypress/issues/7075
+  // https://github.com/jaredpalmer/cypress-image-snapshot/issues/82
   on('before:browser:launch', (browser, launchOptions) => {
     if (browser.name === 'chrome' && browser.isHeadless) {
       launchOptions.args.push('--force-device-scale-factor=2')

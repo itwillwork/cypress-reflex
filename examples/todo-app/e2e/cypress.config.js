@@ -9,6 +9,7 @@ module.exports = defineConfig({
 
       on("task", {
         async 'api:create-task'() {
+          // fake request
           await new Promise(res => setTimeout(res, 1000));
 
           return {

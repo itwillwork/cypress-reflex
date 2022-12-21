@@ -9,9 +9,6 @@ module.exports = {
 			url: "https://todomvc.com/examples/react/?id=${this.testTask.userId}",
 		},
 	}, {
-		command: "check:screenshot",
-		selector: ".todoapp",
-	}, {
 		command: "action:todo-input:type-text",
 		selector: ".new-todo",
 		params: {

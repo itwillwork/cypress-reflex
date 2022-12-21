@@ -50,21 +50,21 @@ module.exports = {
 				'open-editor': {
 					getSpec: ({selectors, params }) => {
 						return `
-						cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('label').dblclick();
+						cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).find('label').dblclick();
 					`;
 					},
 				},
 				'select': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('input.toggle').click();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).find('input.toggle').click();
 						`;
 					},
 				},
 				'edit': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('input.edit').type(\`${params.value}\`).blur();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).find('input.edit').type(\`${params.value}\`).blur();
 						`;
 					},
 					getParamsVariations: ({ params }) => {
@@ -86,7 +86,7 @@ module.exports = {
 				'delete': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).realHover().get('button.destroy').click();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).realHover().find('button.destroy').click();
 						`;
 					},
 				}
