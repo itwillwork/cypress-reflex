@@ -2,12 +2,19 @@ import {
 	SelectorT,
 	CommandsConfigT,
 	GetSummaryMetaT,
+	CommandsConfigItemT,
 } from './models';
+
+const defaultCommandsConfigItem: CommandsConfigItemT = {
+	getSpec: () => '',
+	getParamsVariations: () => [],
+	getSummary: ({ command, params }) => `${command} - ${(command !== "raw" && params) ? JSON.stringify(params) : ''}`,
+}
 
 const defaultCommandsConfig: CommandsConfigT = {
 	check: {
 		screenshot: {
-			getSpec: (selectors, params, meta) => {
+			getSpec: ({ selectors, params }, meta) => {
 				return selectors.map((selector, selectorIndex) => {
 					// TODO normilizer for selectors => filename
 					return `
@@ -21,7 +28,7 @@ const defaultCommandsConfig: CommandsConfigT = {
 		},
 	},
 	raw: {
-		getSpec: (selectors, params, meta) => {
+		getSpec: ({ selectors, params }, meta) => {
 			// TODO improve types
 			const content = (params as any)?.content;
 
@@ -31,10 +38,10 @@ const defaultCommandsConfig: CommandsConfigT = {
 		}
 	},
 	visit: {
-		getSpec: (selectors, params, meta) => {
+		getSpec: ({selectors, params}, meta) => {
 			// TODO improve types
 			const url = (params as any)?.url;
-			
+
 			return `
                 cy.visit(\`${url}\`);
             `;
@@ -45,4 +52,5 @@ const defaultCommandsConfig: CommandsConfigT = {
 
 export {
 	defaultCommandsConfig,
+	defaultCommandsConfigItem,
 }

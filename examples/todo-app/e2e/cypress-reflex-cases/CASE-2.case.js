@@ -1,23 +1,19 @@
+const { visitAndCreateTasksSteps } = require('./common-steps');
+
 module.exports = {
-	describe: [
-		"выбор одного из вариантов и clear cmpleted & all checked",
-	],
+	describe: "выбор одного из вариантов и clear cmpleted & all checked",
 	before: `
 		// TODO before
 	`,
-	beforeEach: `
-		cy.visit('https://todomvc.com/examples/react/');
-		cy.get('.new-todo').type('test 1{enter}').blur();
-		cy.get('.new-todo').type('test 2{enter}').blur();			
-	`,
+	beforeEach:visitAndCreateTasksSteps,
 	after: `
 		// TODO after
 	`,
 	afterEach: `
 		// TODO afterEach
 	`,
-	scenario: [{
-		command: "action:todo-item:select",
+	body: [{
+		command: "action:todo-list:item:select",
 		selector: "ul.todo-list li:first",
 	}, {
 		command: "check:screenshot",

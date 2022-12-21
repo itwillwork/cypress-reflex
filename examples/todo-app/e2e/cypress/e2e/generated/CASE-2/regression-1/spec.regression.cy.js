@@ -2,8 +2,17 @@
     /**
       Describe: выбор одного из вариантов и clear cmpleted & all checked
     */
-    describe('[smoke] cypress/e2e/generated/CASE-3/smoke', () => {
+    describe('cypress/e2e/generated/CASE-2/regression-1', () => {
   
+        Cypress.on('fail', (error, runnable) => {
+          if (/Expected to find element: .+, but never found it./.test(error.message)) {
+            // skip error
+            return;
+          }
+
+          throw error;
+        });
+    
         before(function () {
           
 // Step [1/1]: raw - 
@@ -32,7 +41,9 @@
         
     /** 
 Test summary:
-action:todo-list:select-all - 
+action:todo-list:item:select - 
+check:screenshot - 
+action:todo-filters:select - {"options":[0,1,2],"selectedOption":1}
 check:screenshot - 
 action:todo-list:clear-all - 
 check:screenshot - 
@@ -42,26 +53,37 @@ check:screenshot -
           const specPath = __dirname;
 
           
-// Step [1/4]: action:todo-list:select-all - 
+// Step [1/6]: action:todo-list:item:select - 
 
-						cy.get('.todoapp label[for="toggle-all"]').click();
+						cy.get('ul.todo-list li:first input.toggle').click();
 					
-// Step [2/4]: check:screenshot - 
+// Step [2/6]: check:screenshot - 
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
 			              name: '1_{.todoapp}',
 			            });
 			          
-// Step [3/4]: action:todo-list:clear-all - 
+// Step [3/6]: action:todo-filters:select - {"options":[0,1,2],"selectedOption":1}
 
-						cy.get('.todoapp .footer .clear-completed').click();
+						cy.get('ul.filters li').eq(1).click();
 					
-// Step [4/4]: check:screenshot - 
+// Step [4/6]: check:screenshot - 
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
 			              name: '3_{.todoapp}',
+			            });
+			          
+// Step [5/6]: action:todo-list:clear-all - 
+
+						cy.get('.todoapp .footer .clear-completed').click();
+					
+// Step [6/6]: check:screenshot - 
+
+			            cy.get('.todoapp').takeAndCompareScreenshot({
+			              specPath,
+			              name: '5_{.todoapp}',
 			            });
 			          
         });

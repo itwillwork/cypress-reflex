@@ -2,7 +2,7 @@
     /**
       Describe: Добавление & редактирование & удаление TODO
     */
-    describe('cypress/e2e/generated/CASE-1/regression-0', () => {
+    describe('cypress/e2e/generated/CASE-1/regression-6', () => {
   
         Cypress.on('fail', (error, runnable) => {
           if (/Expected to find element: .+, but never found it./.test(error.message)) {
@@ -44,7 +44,7 @@ action:todo-input:type-enter -
 check:screenshot - 
 action:todo-list:item:open-editor - 
 check:screenshot - 
-action:todo-list:item:edit - {"value":"text"}
+action:todo-list:item:edit - {"value":"text🤡"}
 check:screenshot - 
 action:todo-list:item:delete - 
 check:screenshot - 
@@ -109,9 +109,9 @@ check:screenshot -
 			              name: '7_{.todo-list}',
 			            });
 			          
-// Step [9/12]: action:todo-list:item:edit - {"value":"text"}
+// Step [9/12]: action:todo-list:item:edit - {"value":"text🤡"}
 
-							cy.get('ul.todo-list li:first input.edit').type(`text`).blur();
+							cy.get('ul.todo-list li:first input.edit').type(`text🤡`).blur();
 						
 // Step [10/12]: check:screenshot - 
 

@@ -1,3 +1,6 @@
+import { CaseConfigStepT } from '../cases/models';
+
+export type CommandT = string;
 export type SelectorT = string;
 
 export type GetSummaryMetaT = {
@@ -5,9 +8,9 @@ export type GetSummaryMetaT = {
 }
 
 export type CommandsConfigItemT = {
-  getSpec: <Params = any>(selectors: Array<SelectorT>, params: Params, meta: GetSummaryMetaT) => string;
-  getParamsVariations?: <Params = any>(params: Params, meta: GetSummaryMetaT) => Array<Params>;
-  getSummary?: <Params = any>(selectors: Array<SelectorT>, params: Params, meta: GetSummaryMetaT) => string;
+  getSpec: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => string;
+  getParamsVariations?: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => Array<Params>;
+  getSummary?: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => string;
 };
 
 export type CommandsConfigT = {

@@ -9,6 +9,9 @@ import {
 import {
 	getCommandConfig
 } from './get-command-config';
+import {
+	defaultCommandsConfigItem,
+} from '../commands/default-config';
 
 const getCommonSummaryPrefix = (
 	stepIndex: number, 
@@ -34,13 +37,17 @@ const generateStepsSpec = (steps: CaseConfigStepT[], commandsConfig: CommandsCon
 		}
 
 		const commonSummaryPrefix = getCommonSummaryPrefix(stepIndex, stepsLength);
-		const stepSummary = commandConfig.getSummary?.(step.selectors, step.params, meta) || '-';
-		const summaryComment = `// ${commonSummaryPrefix} ${stepSummary}`;
+
+		const getSummary = commandConfig?.getSummary || defaultCommandsConfigItem.getSummary;
+		const stepSummary = getSummary ? getSummary(step, meta) : '';
+		const summaryComment = `// ${commonSummaryPrefix} ${stepSummary || '-'}`;
 
 		result += `\n${summaryComment}`;
 
-		const stepSpec = commandConfig.getSpec(step.selectors, step.params, meta);
-		result += `\n${stepSpec}`;
+		const getSpec = commandConfig.getSpec || defaultCommandsConfigItem.getSpec;
+		const spec = getSpec(step, meta);
+
+		result += `\n${spec}`;
 	});
 
 	return result;

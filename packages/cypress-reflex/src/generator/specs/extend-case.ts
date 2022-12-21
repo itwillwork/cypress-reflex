@@ -1,6 +1,7 @@
 import { CaseConfigStepT, CaseConfigT } from '../cases/models';
 import { CommandsConfigT, CommandsConfigItemT } from '../commands/models';
 import { getCommandConfig } from './get-command-config';
+import { defaultCommandsConfigItem } from '../commands/default-config'
 
 const extendScenario = (steps: CaseConfigStepT[], commandsConfig: CommandsConfigT): CaseConfigStepT[][] => {
 	const scenarios: CaseConfigStepT[][] = [];
@@ -11,11 +12,12 @@ const extendScenario = (steps: CaseConfigStepT[], commandsConfig: CommandsConfig
 		}
 
 		const commandConfig = getCommandConfig(commandsConfig, step.command);
-		if (!commandConfig?.getParamsVariations) {
+		const getParamsVariations = commandConfig?.getParamsVariations || defaultCommandsConfigItem.getParamsVariations;
+		if (!getParamsVariations) {
 			return;
 		}
-
-		const paramsVariations = commandConfig.getParamsVariations(step.params, { stepIndex }) || [];
+		
+		const paramsVariations = getParamsVariations(step, { stepIndex }) || [];
 
 		paramsVariations.forEach((paramsVariation) => {
 			const newScenario: CaseConfigStepT[]  = [...steps];

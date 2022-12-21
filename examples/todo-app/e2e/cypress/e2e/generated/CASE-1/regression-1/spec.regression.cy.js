@@ -2,7 +2,7 @@
     /**
       Describe: Добавление & редактирование & удаление TODO
     */
-    describe('cypress/e2e/generated/CASE-1/regression-0', () => {
+    describe('cypress/e2e/generated/CASE-1/regression-1', () => {
   
         Cypress.on('fail', (error, runnable) => {
           if (/Expected to find element: .+, but never found it./.test(error.message)) {
@@ -39,7 +39,7 @@ Test summary:
 visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}
 raw - 
 check:screenshot - 
-action:todo-input:type-text - {"value":"${this.testTask.userId}"}
+action:todo-input:type-text - {"value":" ${this.testTask.userId} "}
 action:todo-input:type-enter - 
 check:screenshot - 
 action:todo-list:item:open-editor - 
@@ -71,9 +71,9 @@ check:screenshot -
 			              name: '2_{.header}',
 			            });
 			          
-// Step [4/12]: action:todo-input:type-text - {"value":"${this.testTask.userId}"}
+// Step [4/12]: action:todo-input:type-text - {"value":" ${this.testTask.userId} "}
 
-						cy.get('.new-todo').type(`${this.testTask.userId}`).blur();
+						cy.get('.new-todo').type(` ${this.testTask.userId} `).blur();
 					
 // Step [5/12]: action:todo-input:type-enter - 
 

@@ -2,6 +2,7 @@ import { CaseConfigT, CaseConfigStepT } from '../cases/models';
 import { CommandsConfigT } from '../commands/models';
 import { generateStepsSpec } from './generate-steps-spec';
 import { getCommandConfig } from './get-command-config';
+import { defaultCommandsConfigItem } from '../commands/default-config';
 
 type OptionsT = { 
   specPath: string;
@@ -18,18 +19,21 @@ const getScenarioSummaryComment = (
       return result;
     }
 
-    const summary = commandConfig?.getSummary?.(step.selectors, step.params, { stepIndex }) || '';
+    const getSummary = commandConfig?.getSummary || defaultCommandsConfigItem.getSummary;
+    if (!getSummary) {
+      return result;
+    }
+
+    const summary = getSummary(step, { stepIndex });
     if (!summary.length) {
       return result;
     }
 
-    return result + `\n${summary}`;
-  }, 'Test summary:');
+    return result + `${summary}\n`;
+  }, '\nTest summary:\n');
   
   return `
-    /**
-      ${comment}
-    */
+    /** ${comment} */
   `
 }
 

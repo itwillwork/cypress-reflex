@@ -12,14 +12,18 @@ module.exports = {
 	afterEach: `
 		// TODO afterEach
 	`,
-	scenario: [{
+	body: [{
 		command: "visit",
-		url: "https://todomvc.com/examples/react/?id=${this.testTask.userId}",
+		params: {
+			url: "https://todomvc.com/examples/react/?id=${this.testTask.userId}",
+		},
 	}, {
 		command: "raw",
-		content: `
-			cy.wait(1000); // TODO remove
-		`,
+		params: {
+			content: `
+				cy.wait(1000); // TODO remove
+			`,
+		}
 	}, {
 		command: "check:screenshot",
 		selectors: [
@@ -42,7 +46,7 @@ module.exports = {
 			".todo-count",
 		],
 	}, {
-		command: "action:todo-item:open-editor",
+		command: "action:todo-list:item:open-editor",
 		selector: "ul.todo-list li:first",
 	}, {
 		command: "check:screenshot",
@@ -50,7 +54,7 @@ module.exports = {
 			".todo-list",
 		],
 	}, {
-		command: "action:todo-item:edit-text",
+		command: "action:todo-list:item:edit",
 		selector: "ul.todo-list li:first",
 		params: {
 			value: "text"
@@ -61,7 +65,7 @@ module.exports = {
 			".todo-list",
 		],
 	}, {
-		command: "action:todo-item:delete",
+		command: "action:todo-list:item:delete",
 		selector: "ul.todo-list li:first",
 	}, {
 		command: "check:screenshot",
