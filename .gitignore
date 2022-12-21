@@ -16,3 +16,4 @@ coverage
 
 # webpack build output
 dist/
+build/

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 const { program } = require('commander');
+const { generate } = require('../build/generate');
 
 program
-	.argument('<string>', 'cases path')
-	.option('-c, --config <char>')
-	.option('-o, --output <char>');
+	.version('0.0.1')
+	.option('--cases <char>')
+	.option('--commands <char>')
+	.option('--output <char>');
 
-program.parse();
+program.parse(process.argv);
 
-const options = program.opts();
-const limit = options.first ? 1 : undefined;
-console.log(program.args[0].split(options.separator, limit));
+generate(program.args[0], program.opts())

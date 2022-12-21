@@ -6,22 +6,20 @@ import { scanTestCasesConfig } from './cases/scan-test-cases';
 import { generateSpecs } from './specs/generate-specs';
 
 type OptionsT = {
-  outputBasePath: string,
-  commandsConfig: string,
+  output: string,
+  commands: string,
 }
 
-const exampleOptions: OptionsT = {
-  outputBasePath: 'prototype-c/cases',
-  commandsConfig: 'commandsConfig',
-};
-
-(async (testCasesPath: string, options: OptionsT): Promise<void> => {
-  const projectCommandsConfig = await scanCommandsConfig(options.commandsConfig);
+const generate = async (testCasesPath: string, options: OptionsT): Promise<void> => {
+  const projectCommandsConfig = await scanCommandsConfig(options.commands);
   const commandsConfig = mergeCommandsConfigs(defaultCommandsConfig, projectCommandsConfig);
 
   const testCases = await scanTestCasesConfig(testCasesPath);
 
   await Promise.all(testCases.map(async (testCase) => {
-    await generateSpecs(testCase, commandsConfig, { basePath: options.outputBasePath });
+    await generateSpecs(testCase, commandsConfig, { basePath: options.output });
   }));
-})('prototype-c/cases', exampleOptions);
+};
+
+
+export { generate };
