@@ -1,10 +1,12 @@
 {
   "scripts": {
-    "tests": "cypress open",
+    "tests:run": "cypress open",
+    "tests:run:update": "cypress open --env updateScreenshots=true",
     "generate-tests": "cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
   },
   "dependencies": {
     "cypress": "^12.2.0",
+    "cypress-real-events": "^1.7.4",
     "cypress-reflex": "file:../../../packages/cypress-reflex"
   }
 }

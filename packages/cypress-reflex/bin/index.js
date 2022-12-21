@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { program } = require('commander');
-const { generate } = require('../build/generate');
+const { generate } = require('../build/generator/generate');
 
 program
 	.version('0.0.1')

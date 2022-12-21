@@ -7,8 +7,13 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc --noEmit",
-    "build": "tsc",
+    "build": "rm -rf build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    "./cypress-integration/env": "./cypress-integration/env.js",
+    "./cypress-integration/tasks": "./cypress-integration/tasks.js",
+    "./cypress-integration/commands": "./cypress-integration/commands.js"
   },
   "dependencies": {
     "@types/lodash": "^4.14.191",
