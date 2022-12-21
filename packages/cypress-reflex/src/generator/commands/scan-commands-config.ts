@@ -1,15 +1,18 @@
 import {
 	CommandsConfigT,
 } from './models';
+import {
+	ParsedOptionsT,
+} from '../models';
 
-const scanCommandsConfig = async (configFile: string): Promise < CommandsConfigT > => {
-	if (!configFile) {
+const scanCommandsConfig = async (options: ParsedOptionsT): Promise < CommandsConfigT > => {
+	if (!options.commandsFullPath) {
 		return {};
 	}
 
 	const {
 		default: rawSpecConfig,
-	} = await import(configFile);
+	} = await import(options.commandsFullPath);
 
 	return rawSpecConfig;
 }

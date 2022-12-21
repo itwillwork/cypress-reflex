@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { scanCommandsConfig } from './commands/scan-commands-config';
 import { defaultCommandsConfig } from './commands/default-config';
 import { mergeCommandsConfigs } from './commands/merge-commands-configs';
@@ -5,19 +7,34 @@ import { mergeCommandsConfigs } from './commands/merge-commands-configs';
 import { scanTestCasesConfig } from './cases/scan-test-cases';
 import { generateSpecs } from './specs/generate-specs';
 
+import { ParsedOptionsT } from './models';
+
 type OptionsT = {
-  output: string,
-  commands: string,
+  cases: string;
+  output: string;
+  commands: string;
 }
 
-const generate = async (testCasesPath: string, options: OptionsT): Promise<void> => {
-  const projectCommandsConfig = await scanCommandsConfig(options.commands);
+const generate = async (options: OptionsT): Promise<void> => {
+  const workingDir = process.cwd();
+
+  const parsedOptions: ParsedOptionsT = {
+    workingDir,
+    casesPath: options.cases,
+    casesFullPath: path.resolve(workingDir, options.cases),
+    outputPath: options.output,
+    outputFullPath: path.resolve(workingDir, options.output),
+    commandsPath: options.commands,
+    commandsFullPath: path.resolve(workingDir, options.commands),
+  }
+
+  const projectCommandsConfig = await scanCommandsConfig(parsedOptions);
   const commandsConfig = mergeCommandsConfigs(defaultCommandsConfig, projectCommandsConfig);
 
-  const testCases = await scanTestCasesConfig(testCasesPath);
+  const testCases = await scanTestCasesConfig(parsedOptions);
 
   await Promise.all(testCases.map(async (testCase) => {
-    await generateSpecs(testCase, commandsConfig, { basePath: options.output });
+    await generateSpecs(testCase, commandsConfig, parsedOptions);
   }));
 };
 

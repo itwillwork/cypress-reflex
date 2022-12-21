@@ -11,4 +11,4 @@ program
 
 program.parse(process.argv);
 
-generate(program.args[0], program.opts())
+generate(program.opts())

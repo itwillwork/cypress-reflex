@@ -1,7 +1,7 @@
 {
   "scripts": {
     "tests": "cypress open",
-    "generate-tests": "cypress-reflex --cases=./cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e"
+    "generate-tests": "cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
   },
   "dependencies": {
     "cypress": "^12.2.0",

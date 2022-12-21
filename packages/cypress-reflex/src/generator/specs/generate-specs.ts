@@ -14,17 +14,16 @@ import {
 import {
   generateCaseSpec
 } from './generate-case-spec';
-
-type OptionsT = {
-  basePath: string;
-}
+import {
+  ParsedOptionsT,
+} from '../models';
 
 const generateSpecs = async (
   testCase: TestCaseT,
   commandsConfig: CommandsConfigT,
-  options: OptionsT,
+  options: ParsedOptionsT
 ): Promise < void > => {
-  const specPath = options.basePath + testCase.basePath;
+  const specPath = options.outputPath + testCase.basePath;
 
   const {
     config: smokeConfig
@@ -41,7 +40,7 @@ const generateSpecs = async (
   fs.writeFileSync(smokeSpecPath + '/spec.smoke.cy.js', smokeSpecFileContent);
 
   const regressionConfigs = extendCase(smokeConfig, commandsConfig);
-  
+
   regressionConfigs.forEach((regressionConfig, testIndex) => {
     const regressionSpecPath = `${specPath}/regression-${testIndex}`;
 
@@ -50,6 +49,9 @@ const generateSpecs = async (
       specPath: regressionSpecPath,
     });
 
+     fs.mkdirSync(regressionSpecPath, {
+      recursive: true
+    });
     fs.writeFileSync(regressionSpecPath + '/spec.regression.cy.js', regressionSpecFileContent);
   });
 }

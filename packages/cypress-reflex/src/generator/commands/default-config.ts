@@ -26,7 +26,7 @@ const defaultCommandsConfig: CommandsConfigT = {
 			const content = (params as any)?.content;
 
 			return `
-                cy.visit(\`${content}\`);
+				${content}
             `;
 		}
 	},

@@ -33,9 +33,11 @@ const extendScenario = (steps: CaseConfigStepT[], commandsConfig: CommandsConfig
 }
 
 const extendCase = (caseConfig: CaseConfigT, commandsConfig: CommandsConfigT): CaseConfigT[] => {
-	const bodyVariants = extendScenario(caseConfig.body, commandsConfig);
+	const restBodyVariants = extendScenario(caseConfig.body, commandsConfig);
 
-	return bodyVariants.map((body) => {
+	const allBodyVariants = [caseConfig.body, ...restBodyVariants];
+	
+	return allBodyVariants.map((body) => {
 		return {
 			...caseConfig,
 			body,
