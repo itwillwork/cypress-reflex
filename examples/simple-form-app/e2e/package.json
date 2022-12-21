@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "tests": "cypress open",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cypress": "^12.2.0",
+    "cypress-reflex": "file:../../../packages/cypress-reflex"
   },
   "author": "",
   "license": "ISC"
