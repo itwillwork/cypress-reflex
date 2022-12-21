@@ -11,16 +11,19 @@ const defaultCommandsConfigItem: CommandsConfigItemT = {
 	getSummary: ({ command, params }) => `${command} - ${params ? JSON.stringify(params) : ''}`,
 }
 
+const normalizeFileName = (rawFileName: string): string => rawFileName.replace(/[\"\'\`]/g, '');
+
 const defaultCommandsConfig: CommandsConfigT = {
 	check: {
 		screenshot: {
 			getSpec: ({ selectors, params }, meta) => {
 				return selectors.map((selector, selectorIndex) => {
-					// TODO normilizer for selectors => filename
+					const rawFileName = `${meta.stepIndex + 1}_{${selector}}`;
+
 					return `
 			            cy.get('${selector}').takeAndCompareScreenshot({
 			              specFile,
-			              name: '${meta.stepIndex + 1}_{${selector}}',
+			              name: '${normalizeFileName(rawFileName)}',
 			            });
 			          `
 				}).join('\n');

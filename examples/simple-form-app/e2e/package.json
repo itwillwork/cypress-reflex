@@ -4,8 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "cypress open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "e2e:ui": "cypress open",
+    "e2e:ui:update": "cypress open --env update=true",
+    "e2e:cli": "cypress run --browser chrome",
+    "e2e:cli:smoke": "npm run e2e:cli -- --spec \"cypress/e2e/**/*.smoke.cy.js\"",
+    "e2e:cli:smoke:update": "npm run e2e:cli:smoke -- --env update=true",
+    "e2e:cli:regression": "npm run e2e:cli -- --spec \"cypress/e2e/**/*.regression.cy.js\"",
+    "e2e:cli:regression:update": "npm run e2e:cli:regression -- --env update=true",
+    "e2e:cli:all": "npm run e2e:cli -- --spec \"cypress/e2e/**/*.cy.js\"",
+    "e2e:cli:all:update": "npm run e2e:cli:all -- --env update=true",
+    "generate-tests": "rm -rf cypress/e2e/generated && cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
   },
   "dependencies": {
     "cypress": "^12.2.0",
