@@ -78,7 +78,7 @@ check:screenshot -
 			cy.log('**Step [6/11]:** action:todo-list:item:open-editor - {"itemIndex":0}');
 		
 
-						cy.get(ul'.todo-list li').eq(0).get('label').dblclick();
+						cy.get('ul.todo-list li').eq(0).get('label').dblclick();
 					
 			cy.log('**Step [7/11]:** check:screenshot - ');
 		
@@ -91,7 +91,7 @@ check:screenshot -
 			cy.log('**Step [8/11]:** action:todo-list:item:edit - {"value":"   "}');
 		
 
-							cy.get(ul'.todo-list li').eq(undefined).get('input.edit').type(`   `).blur();
+							cy.get('ul.todo-list li').eq(undefined).get('input.edit').type(`   `).blur();
 						
 			cy.log('**Step [9/11]:** check:screenshot - ');
 		
@@ -104,7 +104,7 @@ check:screenshot -
 			cy.log('**Step [10/11]:** action:todo-list:item:delete - {"itemIndex":0}');
 		
 
-							cy.get(ul'.todo-list li').eq(0).realHover().get('button.destroy').click();
+							cy.get('ul.todo-list li').eq(0).realHover().get('button.destroy').click();
 						
 			cy.log('**Step [11/11]:** check:screenshot - ');
 		

@@ -3,8 +3,6 @@ module.exports = {
 		'todo-input': {
 			'type-text': {
 				getSpec: ({ selectors, params }) => {
-					// TODO
-					// cy.get('#copyText').invoke('val', textToCopy)
 					return `
 						cy.get('${selectors[0]}').type(\`${params.value}\`).blur();
 					`;
@@ -52,21 +50,21 @@ module.exports = {
 				'open-editor': {
 					getSpec: ({selectors, params }) => {
 						return `
-						cy.get(ul'${selectors[0]} li').eq(${params.itemIndex}).get('label').dblclick();
+						cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('label').dblclick();
 					`;
 					},
 				},
 				'select': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get(ul'${selectors[0]} li').eq(${params.itemIndex}).get('input.toggle').click();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('input.toggle').click();
 						`;
 					},
 				},
 				'edit': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get(ul'${selectors[0]} li').eq(${params.itemIndex}).get('input.edit').type(\`${params.value}\`).blur();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).get('input.edit').type(\`${params.value}\`).blur();
 						`;
 					},
 					getParamsVariations: ({ params }) => {
@@ -88,7 +86,7 @@ module.exports = {
 				'delete': {
 					getSpec: ({ selectors, params }) => {
 						return `
-							cy.get(ul'${selectors[0]} li').eq(${params.itemIndex}).realHover().get('button.destroy').click();
+							cy.get('ul${selectors[0]} li').eq(${params.itemIndex}).realHover().get('button.destroy').click();
 						`;
 					},
 				}

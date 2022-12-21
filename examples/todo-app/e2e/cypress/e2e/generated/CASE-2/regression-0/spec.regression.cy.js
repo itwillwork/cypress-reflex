@@ -60,7 +60,7 @@ check:screenshot -
 			cy.log('**Step [1/6]:** action:todo-list:item:select - {"itemIndex":0}');
 		
 
-							cy.get(ul'.todo-list li').eq(0).get('input.toggle').click();
+							cy.get('ul.todo-list li').eq(0).get('input.toggle').click();
 						
 			cy.log('**Step [2/6]:** check:screenshot - ');
 		
