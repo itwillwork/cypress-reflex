@@ -32,7 +32,7 @@ check:screenshot -
  */
   
         it('Test body', function() {
-          const specPath = __dirname;
+          const specFile = __filename;
 
           
 			cy.log('**Step [1/11]:** visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}');
@@ -44,7 +44,7 @@ check:screenshot -
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '2_{.todoapp}',
 			            });
 			          
@@ -62,7 +62,7 @@ check:screenshot -
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '5_{.todoapp}',
 			            });
 			          
@@ -75,7 +75,7 @@ check:screenshot -
 		
 
 			            cy.get('.todo-list').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '7_{.todo-list}',
 			            });
 			          
@@ -88,7 +88,7 @@ check:screenshot -
 		
 
 			            cy.get('.todo-list').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '9_{.todo-list}',
 			            });
 			          
@@ -101,7 +101,7 @@ check:screenshot -
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '11_{.todoapp}',
 			            });
 			          

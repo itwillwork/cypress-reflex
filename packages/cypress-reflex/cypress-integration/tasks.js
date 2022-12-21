@@ -1,12 +1,13 @@
 const pngjs = require('pngjs');
 const pixelmatch = require('pixelmatch');
 const fs = require('fs');
+const path = require('path');
 
 const {
   PNG
 } = pngjs;
 
-const compareSnapshotsPlugin = (args) => {
+const compareSnapshots = (args) => {
   const screenshotExpectedBuffer = fs.readFileSync(args.pathToScreenshotExpected, {
     encoding: 'base64',
   });
@@ -45,13 +46,73 @@ const compareSnapshotsPlugin = (args) => {
   return diffPercent;
 };
 
+
+const saveSnapshot = (args) => {
+  const {
+    from,
+    to
+  } = args;
+
+  fs.mkdirSync(path.dirname(to), {
+    recursive: true
+  });
+
+  fs.copyFileSync(from, to);
+
+  return null;
+}
+
+const WRONG_SCREENSHOT_PATH_REGEXP = /\/cypress\/screenshots\/[^/]+.cy.js\//;
+
 const registrateCypressReflexTasks = (on, config) => {
   on("task", {
-    compareSnapshotsPlugin: (...args) => {
-      return compareSnapshotsPlugin(...args);
+    'cypress-reflex:save-snaphot': (...args) => {
+      return saveSnapshot(...args);
+    },
+    'cypress-reflex:compare-snapshots': (...args) => {
+      return compareSnapshots(...args);
     },
   });
+
+  // fix cypress, cli wrong screenshot path
+  on('after:screenshot', (details) => {
+    
+    // // kekw
+    // if (!details.testFailure) {
+    //   throw new Error("kekw: " + JSON.stringify(details));
+    // }
+
+    if (!details.testFailure && WRONG_SCREENSHOT_PATH_REGEXP.test(details.path)) {
+      const replacementPath = details.path.replace(WRONG_SCREENSHOT_PATH_REGEXP, '/cypress/screenshots/')
+
+      fs.mkdirSync(path.dirname(replacementPath), {
+        recursive: true
+      });
+
+      fs.renameSync(details.path, replacementPath);
+
+      return {
+        ...details,
+        path: replacementPath,
+      }
+    }
+
+
+    return details;
+  });
+
+
+  // fix cypress, different image ratio 
+  // https://github.com/cypress-io/cypress/issues/7075
+  on('before:browser:launch', (browser, launchOptions) => {
+    if (browser.name === 'chrome' && browser.isHeadless) {
+      launchOptions.args.push('--force-device-scale-factor=2')
+    }
+  
+    return launchOptions
+  })
 }
+
 
 module.exports = {
   registrateCypressReflexTasks,

@@ -1,38 +1,39 @@
+const path = require('path');
+const fs = require('fs');
+
 Cypress.Commands.add(
   'takeAndCompareScreenshot', {
     prevSubject: true,
   },
   (subject, {
-    specPath,
+    specFile,
     name
   }) => {
-    const cySubject = cy.wrap(subject);
+    const specPath = path.dirname(specFile);
 
     const fullName = `${name}.${Cypress.browser.name}`;
 
-    const screenshotExpected = `${specPath}/screenshots/${fullName}`;
-
-    const shouldUpdateScreenshots = Cypress.config('shouldUpdateScreenshots');
-    if (shouldUpdateScreenshots) {
-      cySubject.screenshot(screenshotExpected, {
-        overwrite: true,
-      });
-      return;
-    }
-
-
-    const pathToScreenshotExpected = `${screenshotExpected}.png`;
-
-    const screenshotCurrent = `${specPath}/${fullName}.current`;
-    const pathToScreenshotCurrent = `screenshots/${screenshotCurrent}.png`;
-
-    const pathToScreenshotDiff = `screenshots/${specPath}/${fullName}.diff.png`;
-
-    cySubject.screenshot(screenshotCurrent, {
+    cy.wrap(subject).screenshot(`${specFile}/${fullName}.current`, {
       overwrite: true,
     });
 
-    cy.task('compareSnapshotsPlugin', {
+    const screenshotsFolder = Cypress.config('screenshotsFolder');
+    const pathToScreenshotDiff = path.resolve(screenshotsFolder, `${specFile}/${fullName}.diff.png`);
+    const pathToScreenshotCurrent = path.resolve(screenshotsFolder, `${specFile}/${fullName}.current.png`);
+
+    const pathToScreenshotExpected = `${specPath}/screenshots/${fullName}.png`;
+
+    const shouldUpdateScreenshots = Cypress.config('shouldUpdateScreenshots');
+    if (shouldUpdateScreenshots) {
+      cy.task('cypress-reflex:save-snaphot', {
+        from: pathToScreenshotCurrent,
+        to: pathToScreenshotExpected,
+      });
+      
+      return;
+    }
+
+    cy.task('cypress-reflex:compare-snapshots', {
       pathToScreenshotExpected,
       pathToScreenshotCurrent,
       pathToScreenshotDiff,

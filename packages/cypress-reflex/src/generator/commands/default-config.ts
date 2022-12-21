@@ -19,7 +19,7 @@ const defaultCommandsConfig: CommandsConfigT = {
 					// TODO normilizer for selectors => filename
 					return `
 			            cy.get('${selector}').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '${meta.stepIndex + 1}_{${selector}}',
 			            });
 			          `

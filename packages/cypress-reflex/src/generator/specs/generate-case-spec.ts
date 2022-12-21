@@ -98,7 +98,7 @@ const generateCaseSpec = (
   result += `
         ${getScenarioSummaryComment(body, commandsConfig)}
         it('Test body', function() {
-          const specPath = __dirname;
+          const specFile = __filename;
 
           ${generateStepsSpec(body, commandsConfig)}
         });

@@ -53,7 +53,7 @@ check:screenshot -
  */
   
         it('Test body', function() {
-          const specPath = __dirname;
+          const specFile = __filename;
 
           
 			cy.log('**Step [1/5]:** action:todo-list:select-all - ');
@@ -70,7 +70,7 @@ check:screenshot -
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '3_{.todoapp}',
 			            });
 			          
@@ -83,7 +83,7 @@ check:screenshot -
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
-			              specPath,
+			              specFile,
 			              name: '5_{.todoapp}',
 			            });
 			          
