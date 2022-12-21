@@ -1,32 +1,28 @@
-const { visitAndCreateTasksSteps } = require('./common-steps');
+const {
+	visitAndCreateTasksSteps
+} = require('./common-steps');
 
 module.exports = {
-	describe: "выбор одного из вариантов и clear cmpleted & all checked",
-	before: `
-		// TODO before
-	`,
-	beforeEach:visitAndCreateTasksSteps,
-	after: `
-		// TODO after
-	`,
-	afterEach: `
-		// TODO afterEach
-	`,
+	describe: "Select all & clear all selected",
+	beforeEach: visitAndCreateTasksSteps,
 	body: [{
 		command: "action:todo-list:select-all",
 		selector: ".todoapp",
 	}, {
+		command: "action:todo-filters:select",
+		selector: ".filters",
+		params: {
+			options: [0, 1, 2],
+			selectedOption: 0,
+		},
+	}, {
 		command: "check:screenshot",
-		selectors: [
-			".todoapp",
-		],
+		selector: ".todoapp",
 	}, {
 		command: "action:todo-list:clear-all",
 		selector: ".todoapp",
 	}, {
 		command: "check:screenshot",
-		selectors: [
-			".todoapp",
-		],
+		selector: ".todoapp",
 	}],
 }

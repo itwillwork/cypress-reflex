@@ -1,16 +1,7 @@
 module.exports = {
-	describe: "Добавление & редактирование & удаление TODO",
-	before: `
-		// TODO before
-	`,
+	describe: "Добавление & редактирование & удаление todo",
 	beforeEach: `
 		  cy.task('api:create-task').as('testTask');
-	`,
-	after: `
-		// TODO after
-	`,
-	afterEach: `
-		// TODO afterEach
 	`,
 	body: [{
 		command: "visit",
@@ -18,17 +9,8 @@ module.exports = {
 			url: "https://todomvc.com/examples/react/?id=${this.testTask.userId}",
 		},
 	}, {
-		command: "raw",
-		params: {
-			content: `
-				cy.wait(1000); // TODO remove
-			`,
-		}
-	}, {
 		command: "check:screenshot",
-		selectors: [
-			".header",
-		],
+		selector: ".todoapp",
 	}, {
 		command: "action:todo-input:type-text",
 		selector: ".new-todo",
@@ -40,14 +22,13 @@ module.exports = {
 		selector: ".new-todo",
 	}, {
 		command: "check:screenshot",
-		selectors: [
-			".header",
-			".todo-list",
-			".todo-count",
-		],
+		selector: ".todoapp",
 	}, {
 		command: "action:todo-list:item:open-editor",
-		selector: "ul.todo-list li:first",
+		selector: ".todo-list",
+		params: {
+			itemIndex: 0,
+		}
 	}, {
 		command: "check:screenshot",
 		selectors: [
@@ -55,8 +36,9 @@ module.exports = {
 		],
 	}, {
 		command: "action:todo-list:item:edit",
-		selector: "ul.todo-list li:first",
+		selector: ".todo-list",
 		params: {
+			itemIndex: 0,
 			value: "text"
 		}
 	}, {
@@ -66,11 +48,12 @@ module.exports = {
 		],
 	}, {
 		command: "action:todo-list:item:delete",
-		selector: "ul.todo-list li:first",
+		selector: ".todo-list",
+		params: {
+			itemIndex: 0,
+		}
 	}, {
 		command: "check:screenshot",
-		selectors: [
-			".todoapp",
-		],
+		selector: ".todoapp",
 	}],
 }

@@ -5,12 +5,22 @@ module.exports = {
 			url: "https://todomvc.com/examples/react/",
 		},
 	}, {
-		command: "raw",
+		command: "action:todo-input:type-text",
+		selector: ".new-todo",
 		params: {
-			content: `
-					cy.get('.new-todo').type('test 1{enter}').blur();
-					cy.get('.new-todo').type('test 2{enter}').blur();
-				`,
+			value: "test 1"
 		}
-	}, ]
+	}, {
+		command: "action:todo-input:type-enter",
+		selector: ".new-todo",
+	}, {
+		command: "action:todo-input:type-text",
+		selector: ".new-todo",
+		params: {
+			value: "test 2"
+		}
+	}, {
+		command: "action:todo-input:type-enter",
+		selector: ".new-todo",
+	}]
 }
