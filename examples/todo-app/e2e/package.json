@@ -1,8 +1,13 @@
 {
   "scripts": {
-    "tests:run": "cypress open",
-    "tests:run:update": "cypress open --env updateScreenshots=true",
-    "generate-tests": "cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
+    "tests:ui": "cypress open",
+    "tests:ui:update": "cypress open --env updateScreenshots=true",
+    "tests:cli": "cypress run --browser chrome",
+    "tests:cli:smoke": "npm run tests:cli -- --spec \"cypress/e2e/**/*.smoke.cy.js\"",
+    "tests:cli:smoke:update": "npm run tests:cli:smoke -- --env updateScreenshots=true",
+    "tests:cli:regression": "npm run tests:cli -- --spec \"cypress/e2e/**/*.regression.cy.js\"",
+    "tests:cli:regression:update": "npm run tests:cli:regression -- --env updateScreenshots=true",
+    "generate-tests": "rm -rf cypress/e2e/generated && cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
   },
   "dependencies": {
     "cypress": "^12.2.0",
