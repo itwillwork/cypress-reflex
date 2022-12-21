@@ -56,6 +56,9 @@ const generateCaseSpec = (
   let result = '';
 
   result += `
+    /**
+      Describe: ${describe || '-'}
+    */
     describe('${getSpecDescribe(options)}', () => {
   `;
 

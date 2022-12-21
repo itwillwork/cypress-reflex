@@ -1,4 +1,7 @@
 
+    /**
+      Describe: Добавление & редактирование & удаление TODO
+    */
     describe('[smoke] cypress/e2e/generated/CASE-1/smoke', () => {
   
         before(function () {

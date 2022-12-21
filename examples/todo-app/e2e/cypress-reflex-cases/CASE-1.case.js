@@ -1,7 +1,5 @@
 module.exports = {
-	describe: [
-		"Добавление & редактирование & удаление TODO",
-	],
+	describe: "Добавление & редактирование & удаление TODO",
 	before: `
 		// TODO before
 	`,

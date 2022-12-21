@@ -1,4 +1,7 @@
 
+    /**
+      Describe: выбор одного из вариантов и clear cmpleted & all checked
+    */
     describe('[smoke] cypress/e2e/generated/CASE-2/smoke', () => {
   
         before(function () {

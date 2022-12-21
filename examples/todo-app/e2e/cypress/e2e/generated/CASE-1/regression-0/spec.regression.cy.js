@@ -1,4 +1,7 @@
 
+    /**
+      Describe: Добавление & редактирование & удаление TODO
+    */
     describe('cypress/e2e/generated/CASE-1/regression-0', () => {
   
         Cypress.on('fail', (error, runnable) => {

@@ -1,4 +1,7 @@
 
+    /**
+      Describe: выбор одного из вариантов и clear cmpleted & all checked
+    */
     describe('cypress/e2e/generated/CASE-2/regression-0', () => {
   
         Cypress.on('fail', (error, runnable) => {
