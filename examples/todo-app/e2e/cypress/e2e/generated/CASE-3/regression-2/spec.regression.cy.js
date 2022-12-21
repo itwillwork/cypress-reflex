@@ -15,31 +15,26 @@
     
         beforeEach(function () {
           
-			// Step [1/5]: visit - {"url":"https://todomvc.com/examples/react/"}
 			cy.log('**Step [1/5]:** visit - {"url":"https://todomvc.com/examples/react/"}');
 		
 
                 cy.visit(`https://todomvc.com/examples/react/`);
             
-			// Step [2/5]: action:todo-input:type-text - {"value":"test 1"}
 			cy.log('**Step [2/5]:** action:todo-input:type-text - {"value":"test 1"}');
 		
 
 						cy.get('.new-todo').type(`test 1`).blur();
 					
-			// Step [3/5]: action:todo-input:type-enter - 
 			cy.log('**Step [3/5]:** action:todo-input:type-enter - ');
 		
 
 						cy.get('.new-todo').type('{enter}').blur();
 					
-			// Step [4/5]: action:todo-input:type-text - {"value":"test 2"}
 			cy.log('**Step [4/5]:** action:todo-input:type-text - {"value":"test 2"}');
 		
 
 						cy.get('.new-todo').type(`test 2`).blur();
 					
-			// Step [5/5]: action:todo-input:type-enter - 
 			cy.log('**Step [5/5]:** action:todo-input:type-enter - ');
 		
 
@@ -61,40 +56,35 @@ check:screenshot -
           const specPath = __dirname;
 
           
-			// Step [1/5]: action:todo-list:select-all - 
 			cy.log('**Step [1/5]:** action:todo-list:select-all - ');
 		
 
 						cy.get('.todoapp label[for="toggle-all"]').click();
 					
-			// Step [2/5]: action:todo-filters:select - {"options":[0,1,2],"selectedOption":2}
 			cy.log('**Step [2/5]:** action:todo-filters:select - {"options":[0,1,2],"selectedOption":2}');
 		
 
 						cy.get('ul.filters li').eq(2).click();
 					
-			// Step [3/5]: check:screenshot - 
 			cy.log('**Step [3/5]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '2_{.todoapp}',
+			              name: '3_{.todoapp}',
 			            });
 			          
-			// Step [4/5]: action:todo-list:clear-all - 
 			cy.log('**Step [4/5]:** action:todo-list:clear-all - ');
 		
 
 						cy.get('.todoapp .footer .clear-completed').click();
 					
-			// Step [5/5]: check:screenshot - 
 			cy.log('**Step [5/5]:** check:screenshot - ');
 		
 
 			            cy.get('.todoapp').takeAndCompareScreenshot({
 			              specPath,
-			              name: '4_{.todoapp}',
+			              name: '5_{.todoapp}',
 			            });
 			          
         });

@@ -20,7 +20,7 @@ const defaultCommandsConfig: CommandsConfigT = {
 					return `
 			            cy.get('${selector}').takeAndCompareScreenshot({
 			              specPath,
-			              name: '${meta.stepIndex}_{${selector}}',
+			              name: '${meta.stepIndex + 1}_{${selector}}',
 			            });
 			          `
 				}).join('\n');

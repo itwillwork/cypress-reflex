@@ -42,7 +42,6 @@ const generateStepsSpec = (steps: CaseConfigStepT[], commandsConfig: CommandsCon
 		const stepSummary = getSummary ? getSummary(step, meta) : '';
 
 		result += `
-			// ${commonSummaryPrefix} ${stepSummary || '-'}
 			cy.log('**${commonSummaryPrefix}** ${stepSummary}');
 		`;
 
