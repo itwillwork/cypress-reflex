@@ -15,7 +15,7 @@
     
         beforeEach(function () {
           
-			cy.log('**Step [1/1]:** raw - ');
+			cy.log('**Step [1/1]:** raw');
 		
 
 				
@@ -27,7 +27,7 @@
         
     /** 
 Test summary:
-visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}
+visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}
 check:screenshot - 
 action:todo-input:type-text - {"value":"${this.testTask.userId}🤡"}
 action:todo-input:type-enter - 
@@ -44,7 +44,7 @@ check:screenshot -
           const specPath = __dirname;
 
           
-			cy.log('**Step [1/11]:** visit - {"url":"https://todomvc.com/examples/react/?id=${this.testTask.userId}"}');
+			cy.log('**Step [1/11]:** visit - https://todomvc.com/examples/react/?id=${this.testTask.userId}');
 		
 
                 cy.visit(`https://todomvc.com/examples/react/?id=${this.testTask.userId}`);

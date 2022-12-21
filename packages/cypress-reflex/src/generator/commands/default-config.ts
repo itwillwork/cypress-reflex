@@ -8,7 +8,7 @@ import {
 const defaultCommandsConfigItem: CommandsConfigItemT = {
 	getSpec: () => '',
 	getParamsVariations: () => [],
-	getSummary: ({ command, params }) => `${command} - ${(command !== "raw" && params) ? JSON.stringify(params) : ''}`,
+	getSummary: ({ command, params }) => `${command} - ${params ? JSON.stringify(params) : ''}`,
 }
 
 const defaultCommandsConfig: CommandsConfigT = {
@@ -35,7 +35,8 @@ const defaultCommandsConfig: CommandsConfigT = {
 			return `
 				${content}
             `;
-		}
+		},
+		getSummary: ({ command }) => `${command}`,
 	},
 	visit: {
 		getSpec: ({selectors, params}, meta) => {
@@ -45,7 +46,8 @@ const defaultCommandsConfig: CommandsConfigT = {
 			return `
                 cy.visit(\`${url}\`);
             `;
-		}
+		},
+		getSummary: ({ command, params }) => `${command} - ${params.url}`,
 	},
 }
 

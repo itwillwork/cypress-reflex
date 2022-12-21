@@ -6,7 +6,7 @@
   
         beforeEach(function () {
           
-			cy.log('**Step [1/5]:** visit - {"url":"https://todomvc.com/examples/react/"}');
+			cy.log('**Step [1/5]:** visit - https://todomvc.com/examples/react/');
 		
 
                 cy.visit(`https://todomvc.com/examples/react/`);
