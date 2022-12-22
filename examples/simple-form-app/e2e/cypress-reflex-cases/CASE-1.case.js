@@ -33,5 +33,18 @@ module.exports = {
 	}, {
 		command: "check:screenshot",
 		selector: '[data-test-id="app"]'
-	}],
+	}, {
+		command: "check:request",
+		params: {
+			method: "POST",
+			url: "**/api/sign-up*",
+			fields: [
+				'request.headers.origin',
+				'request.url',
+				'request.method',
+				'request.query',
+				'request.body'
+			],
+		}
+	},],
 }

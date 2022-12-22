@@ -9,7 +9,6 @@ module.exports = {
 				},
 				getParamsVariations: ({ params }) => {
 					return [
-						'',
 						` ${params.value} `,
 						`   `,
 						`${params.value}🤡`,
@@ -28,7 +27,6 @@ module.exports = {
 				},
 				getParamsVariations: ({ params }) => {
 					return [
-						'',
 						"0",
 						"-1",
 						"--1",

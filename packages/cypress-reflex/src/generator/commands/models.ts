@@ -8,6 +8,7 @@ export type GetSummaryMetaT = {
 }
 
 export type CommandsConfigItemT = {
+  getPreSpec?: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => string;
   getSpec: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => string;
   getParamsVariations?: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => Array<Params>;
   getSummary?: <Params = any>(step: CaseConfigStepT<Params>, meta: GetSummaryMetaT) => string;

@@ -1,6 +1,7 @@
 import { CaseConfigT, CaseConfigStepT } from '../cases/models';
 import { CommandsConfigT } from '../commands/models';
 import { generateStepsSpec } from './generate-steps-spec';
+import { generateStepsPreSpec } from './generate-steps-pre-spec';
 import { getCommandConfig } from './get-command-config';
 import { defaultCommandsConfigItem } from '../commands/default-config';
 
@@ -69,8 +70,13 @@ const generateCaseSpec = (
   if (!options.isSmoke) {
     result += `
         Cypress.on('fail', (error, runnable) => {
+          if (/No request ever occurred/.test(error.message)) {
+            // skip requests error
+            return;
+          }
+
           if (/Expected to find element: .+, but never found it./.test(error.message)) {
-            // skip error
+            // skip get error
             return;
           }
 
@@ -100,6 +106,7 @@ const generateCaseSpec = (
         it('Test body', function() {
           const specFile = __filename;
 
+          ${generateStepsPreSpec(body, commandsConfig)}
           ${generateStepsSpec(body, commandsConfig)}
         });
   `;

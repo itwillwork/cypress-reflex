@@ -6,6 +6,7 @@ import {
 } from './models';
 
 const defaultCommandsConfigItem: CommandsConfigItemT = {
+	getPreSpec: () => '',
 	getSpec: () => '',
 	getParamsVariations: () => [],
 	getSummary: ({ command, params }) => `${command} - ${params ? JSON.stringify(params) : ''}`,
@@ -28,6 +29,23 @@ const defaultCommandsConfig: CommandsConfigT = {
 			          `
 				}).join('\n');
 			},
+		},
+		request: {
+			getPreSpec: ({params}, meta) => {
+				return `
+					cy.intercept(\`${params.method}\`, \`${params.url}\`).as('request-${meta.stepIndex + 1}');
+				`;
+			},
+			getSpec: ({ selectors, params }, meta) => {
+				return `
+					cy.wait('@request-${meta.stepIndex + 1}').takeAndCompareRequest({
+						specFile,
+						fixtureName: 'request-${meta.stepIndex + 1}',
+						fields: ${JSON.stringify(params.fields)},
+					});
+				`
+			},
+			getSummary: ({ params, command }) => `${command} - ${params.method} ${params.url.replace(/\*/g, '_')}`,
 		},
 	},
 	raw: {

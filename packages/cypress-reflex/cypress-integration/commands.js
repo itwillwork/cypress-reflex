@@ -41,7 +41,7 @@ Cypress.Commands.add(
       pathToScreenshotCurrent,
       pathToScreenshotDiff,
     }).then((diffPercent) => {
-      if (diffPercent > 0.0005) {
+      if (diffPercent > 0.01) {
         const message = `The screenshot:[${pathToScreenshotCurrent}] differs from :[${pathToScreenshotExpected}], check the diff: [${pathToScreenshotDiff}]`;
         throw new Error(message);
       }
