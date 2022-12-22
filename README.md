@@ -1,11 +1,16 @@
-# cypress-reflex
+[WIP] cypress-reflex
+=============
 
-### Quick start
+Для чего создан
+-------
+WIP
 
+Quick start
+-------
 
 1. Установить зависимость
 ```
-npm run cypress-reflex
+npm i --save-dev cypress-reflex
 ```
 
 2. В файл `cypress/support/e2e.js` добавить строку:
