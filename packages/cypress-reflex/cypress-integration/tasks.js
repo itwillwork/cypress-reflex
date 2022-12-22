@@ -62,6 +62,22 @@ const saveSnapshot = (args) => {
   return null;
 }
 
+const saveJSONFixture = (args) => {
+  const { path, data } = args;
+
+  fs.writeFileSync(path, JSON.stringify(data, null, 2));
+
+  return null;
+}
+
+const getJSONFixture = (args) => {
+  const { path } = args;
+
+  const buffer = fs.readFileSync(path);
+
+  return JSON.parse(buffer.toString());
+}
+
 const WRONG_SCREENSHOT_PATH_REGEXP = /cypress\/screenshots\/.+\/cypress/;
 
 const registrateCypressReflexTasks = (on, config) => {
@@ -71,6 +87,12 @@ const registrateCypressReflexTasks = (on, config) => {
     },
     'cypress-reflex:compare-snapshots': (...args) => {
       return compareSnapshots(...args);
+    },
+    'cypress-reflex:save-json-fixture': (...args) => {
+      return saveJSONFixture(...args);
+    },
+    'cypress-reflex:get-json-fixture': (...args) => {
+      return getJSONFixture(...args);
     },
   });
 

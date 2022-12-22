@@ -22,7 +22,7 @@ function App() {
       <form
         data-test-id="sign-up-form"
         onSubmit={handleSubmit((data) => {
-          fetch('/api/sign-up', {
+          fetch('/api/sign-up?a=1', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

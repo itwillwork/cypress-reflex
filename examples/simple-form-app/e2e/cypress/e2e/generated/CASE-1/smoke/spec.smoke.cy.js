@@ -49,10 +49,23 @@ check:screenshot -
 			            });
 			          
 			cy.log('**Step [6/7]:** action:form:submit - ');
-		
+
+cy.intercept("POST", "**/api/sign-up*").as('request-step-1');
 
 						cy.get('form[data-test-id="sign-up-form"]').find('input[type="submit"]').click();
-					
+				
+cy.get('@request-step-1').takeAndCompareRequest({
+	specFile,
+	fixtureName: 'fixute-1',
+	fields: [
+		'request.headers.origin',
+		'request.url',
+		'request.method',
+		'request.query',
+		'request.body'
+	],
+});
+
 			cy.log('**Step [7/7]:** check:screenshot - ');
 		
 
