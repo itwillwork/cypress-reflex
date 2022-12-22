@@ -1,0 +1,17 @@
+{
+  "request": {
+    "headers": {
+      "origin": "http://localhost:3000"
+    },
+    "url": "http://localhost:3000/api/sign-up?a=1",
+    "method": "POST",
+    "query": {
+      "a": "1"
+    },
+    "body": {
+      "name": "Ivan",
+      "age": "24",
+      "profession": "driver"
+    }
+  }
+}
