@@ -75,3 +75,8 @@ module.exports = defineConfig({
 ```
 "generate-tests": "rm -rf cypress/e2e/generated && cypress-reflex --cases=cypress-reflex-cases --commands=cypress-reflex-cases/commands.js --output=cypress/e2e/generated"
 ```
+
+### Road map
+
+- [ ] Переименовать пакет cypress-reflex => cypress-reflex-cli
+- [ ] Накидать инструкцию
