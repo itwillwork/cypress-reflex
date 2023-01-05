@@ -78,5 +78,6 @@ module.exports = defineConfig({
 
 ### Road map
 
+- [ ] Вкрутить prettier в примеры и в сам код
 - [ ] Переименовать пакет cypress-reflex => cypress-reflex-cli
 - [ ] Накидать инструкцию
